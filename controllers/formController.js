@@ -59,6 +59,7 @@ const createFormSubmission = async (req, res) => {
 
       // Send email notification to admin
       const adminEmailHTML = `
+      
           <h2>New Service Request</h2>
           <h3>Customer Details:</h3>
           <p><strong>Name:</strong> ${name}</p>
@@ -74,15 +75,91 @@ const createFormSubmission = async (req, res) => {
 
       // Send confirmation email to customer
       const customerEmailHTML = `
-          <h2>Thank you for your service request!</h2>
-          <p>Dear ${name},</p>
-          <p>We have received your service request and will process it shortly.</p>
-          <h3>Service Details:</h3>
+      <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .header {
+            background-color: #FFD700;
+            color: #000;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content {
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            margin: 20px auto;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .content h2 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .content p {
+            margin: 10px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #FFD700;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Welcome to Bulavo</h1>
+    </div>
+    <div class="content">
+        <h2>Thank you for booking a service!</h2>
+            <p>Dear ${name},</p>
+                <h3>Service Details:</h3>
           <p><strong>Service:</strong> ${service}</p>
           <p><strong>Address:</strong> ${address}</p>
           <p><strong>Pincode:</strong> ${pincode}</p>
           <p>We will contact you at ${phoneNumber} to confirm the details.</p>
-          <p>Best regards,<br>Your Service Team</p>
+        <p>We have received your request and are thrilled to assist you.</p>
+        <p>Our expert technician will arrive at your location at the scheduled time, ensuring convenience and quality service.</p>
+        <p>If you have any questions or need to make changes to your booking, feel free to get in touch.</p>
+        <a href="tel:+919328939099" class="button">Call Us Now</a>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Bulavo. All rights reserved.</p>
+        <p>Ahmedabad | +91 9328939099</p>
+    </div>
+</body>
+
+</html>
+        
       `;
 
       // Send email to admin
